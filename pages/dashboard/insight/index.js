@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Dropdown from "../../../components/shared/Dropdown";
 
 const Test = () => {
   return (
@@ -23,7 +23,7 @@ const Test = () => {
 
       {/* Main Start */}
 
-      <main className="flex">
+      <main className="flex bg-light">
 
         {/* //* Fake sidebar and for correct design*/}
         <aside>
@@ -31,7 +31,8 @@ const Test = () => {
         </aside>
         {/* Sidebar end */}
         
-        <section className="flex-auto">salam</section>
+        <section className="flex-auto px-8 py-12"><Dropdown dropdownFor = "TOKEN_PRICES"  /> <Dropdown dropdownFor="LABELS"/></section>
+        
       </main>
 
       {/* Main END */}

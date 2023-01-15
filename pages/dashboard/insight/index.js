@@ -1,16 +1,17 @@
 import Head from "next/head";
 import Link from "next/link";
 import React from "react";
-import Dropdown from "../../../components/shared/Dropdown";
+import BudgetChart from "../../../components/charts/BudgetChart";
+import TokenFlow from "../../../components/charts/TokenFlowChart";
 
-const Test = () => {
+const Insight = () => {
   return (
     <>
       <Head>
         <title>Insight Page</title>
       </Head>
 
-      {/* //!  Sehifede hazir navbar ve sidebar oldugu ucun sadece sekil qoydum dizayn duz olsun deye. Esas layihede componentle evez edeciyik*/}
+      {/* //!  Betada hazir navbar ve sidebar oldugu ucun sadece sekil qoydum dizayn duz olsun deye. Esas layihede componentle evez edeciyik*/}
 
       {/* Header*/}
 
@@ -31,7 +32,10 @@ const Test = () => {
         </aside>
         {/* Sidebar end */}
         
-        <section className="flex-auto px-8 py-12"><Dropdown dropdownFor = "TOKEN_PRICES"  /> <Dropdown dropdownFor="LABELS"/></section>
+        <section className="flex-auto px-8 py-12">
+          <BudgetChart/>
+          <TokenFlow/>
+        </section>
         
       </main>
 
@@ -44,4 +48,4 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default Insight;

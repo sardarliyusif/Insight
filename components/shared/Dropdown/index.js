@@ -59,7 +59,6 @@ export default function TotalDropdown({ dropdownFor }) {
   const [dropdownType, setDropdownType] = useState(
     dropdownTypes.find((e) => e.type == dropdownFor)
   );
-  console.log(dropdownType.options);
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>

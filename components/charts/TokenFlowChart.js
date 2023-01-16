@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-export default function TokenFlow() {
+export default function TokenFlow({ leftBar}) {
   const options = {
     chart: {
       type: "line",
@@ -28,6 +28,13 @@ export default function TokenFlow() {
       width: [0, 2, 2],
       curve: "smooth",
     },
+    grid: {
+      yaxis: {
+        lines: {
+          show: false,
+        },
+      },
+    },
     xaxis: {
       categories: [
         "Feb",
@@ -41,15 +48,9 @@ export default function TokenFlow() {
         "Oct",
       ],
     },
-    grid: {
-      yaxis: {
-        lines: {
-          show: false,
-        },
-      },
-    },
+    
     yaxis: {
-      show: false, // true ele icine girende
+      show: leftBar,
     },
     fill: {
       opacity: 1,
@@ -81,6 +82,7 @@ export default function TokenFlow() {
   ];
 
   return (
+    
     <Chart
       options={options}
       series={series}
@@ -88,5 +90,6 @@ export default function TokenFlow() {
       height={350}
       width={740}
     />
+
   );
 }

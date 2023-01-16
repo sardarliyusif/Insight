@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-export default function BudgetChart() {
+export default function BudgetChart({ leftBar}) {
   const options = {
     chart: {
       type: "line",
@@ -9,6 +9,10 @@ export default function BudgetChart() {
       zoom: {
         enabled: false,
       },
+    },
+    
+    legend: {
+      position: "top",
     },
     plotOptions: {
       bar: {
@@ -47,12 +51,10 @@ export default function BudgetChart() {
       ],
     },
     yaxis: {
-      show: false, // true ele icine girende
+      show: leftBar,
     },
 
-    legend: {
-      position: "top",
-    },
+    
     fill: {
       opacity: 1,
     },
@@ -66,17 +68,18 @@ export default function BudgetChart() {
   };
   const series = [
     {
-      name: "Actual",
+      name: "Budgeted",
       type: "column",
       data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
     },
     {
-      name: "Budgeted",
+      name: "Actual",
       type: "column",
       data: [50, 55, 57, 56, 61, 58, 63, 60, 66],
     },
   ];
   return (
+    
     <Chart
       options={options}
       series={series}

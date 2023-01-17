@@ -7,9 +7,24 @@ export default function DonutChart() {
     chart: {
       type: "donut",
     },
+    labels: ['Payroll', 'Event', 'Advertisements', 'Reimbursement'],
+    // labels: ['CELO', 'Polygon', 'Ethereum', 'Avalanche'],
     legend: {
-        position: "bottom",
-      },
+      position: "bottom",
+      fontSize: '15px',
+      fontFamily: 'Inter',
+      horizontalAlign: 'left', 
+      fontWeight: 500,
+      width: 140,
+      labels:{
+        colors: ['#707070']
+      }
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    colors: ["#FF7348", "#7D88ED", "#FFC700", "#FE3131"],
+    
     responsive: [
       {
         breakpoint: 480,
@@ -17,7 +32,6 @@ export default function DonutChart() {
           chart: {
             width: 200,
           },
-          
         },
       },
     ],
@@ -28,8 +42,8 @@ export default function DonutChart() {
       options={options}
       series={series}
       type="donut"
-        height={350}
-        width={740}
+      height={350}
+      width={350}
     />
   );
 }

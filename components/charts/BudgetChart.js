@@ -6,13 +6,21 @@ export default function BudgetChart({ leftBar}) {
     chart: {
       type: "line",
       height: 350,
-      zoom: {
-        enabled: false,
+      toolbar:{
+        show: false
       },
     },
     
     legend: {
       position: "top",
+      fontWeight: 700,
+      labels: {
+        colors: ["#333333"],
+      },
+      itemMargin: {
+        horizontal: 20,
+        vertical: 0,
+      },
     },
     plotOptions: {
       bar: {
@@ -49,6 +57,13 @@ export default function BudgetChart({ leftBar}) {
         "Sep",
         "Oct",
       ],
+      tooltip: {
+        enabled: false,
+      },
+      axisBorder: {
+        color: "#CCD6EB",
+        offsetY: 8,
+      },
     },
     yaxis: {
       show: leftBar,
@@ -85,7 +100,7 @@ export default function BudgetChart({ leftBar}) {
       series={series}
       type="line"
       height={350}
-      width={740}
+      width={700}
     />
   );
 }

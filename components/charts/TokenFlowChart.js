@@ -1,17 +1,25 @@
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-export default function TokenFlow({ leftBar}) {
+export default function TokenFlow({ leftBar }) {
   const options = {
     chart: {
       type: "line",
       height: 350,
-      zoom: {
-        enabled: false,
+      toolbar: {
+        show: false,
       },
     },
     legend: {
       position: "top",
+      fontWeight: 700,
+      labels: {
+        colors: ["#333333"],
+      },
+      itemMargin: {
+        horizontal: 20,
+        vertical: 0,
+      },
     },
     plotOptions: {
       bar: {
@@ -35,6 +43,12 @@ export default function TokenFlow({ leftBar}) {
         },
       },
     },
+    markers: {
+      size: [0],
+      colors: "#FFFFFF",
+      strokeColors: "#F7A35C",
+      strokeWidth: 4,
+    },
     xaxis: {
       categories: [
         "Feb",
@@ -47,8 +61,15 @@ export default function TokenFlow({ leftBar}) {
         "Sep",
         "Oct",
       ],
+      tooltip: {
+        enabled: false,
+      },
+      axisBorder: {
+        color: "#CCD6EB",
+        offsetY: 8,
+      },
     },
-    
+
     yaxis: {
       show: leftBar,
     },
@@ -82,14 +103,12 @@ export default function TokenFlow({ leftBar}) {
   ];
 
   return (
-    
     <Chart
       options={options}
       series={series}
       type="line"
       height={350}
-      width={740}
+      width={700}
     />
-
   );
 }

@@ -4,57 +4,23 @@ import React from "react";
 import BudgetChart from "../../../components/charts/BudgetChart";
 import DonutChart from "../../../components/charts/DonutChart";
 import TokenFlow from "../../../components/charts/TokenFlowChart";
+import Layout from "../../../components/layout";
 
 const Insight = () => {
   return (
-    <>
+    <Layout>
       <Head>
-        <title>Insight Page</title>
+        <title>Insight page</title>
       </Head>
 
-      {/* //!  Betada hazir navbar ve sidebar oldugu ucun sadece sekil qoydum dizayn duz olsun deye. Esas layihede componentle evez edeciyik*/}
+      <div className="bg-white max-w-[740px] p-4 mb-8 rounded-md">
+        <TokenFlow />
+      </div>
 
-      {/* Header*/}
-
-      {/* //* Fake navbar and for correct design*/}
-      <header className="fake-navbar">
-        <img
-          className="w-full h-[72px]"
-          src="/navbar.jpg"
-          alt="navbar-example-img"
-        />
-      </header>
-
-      {/* Header End */}
-
-      {/* Main Start */}
-
-      <main className="flex bg-light">
-        {/* //* Fake sidebar and for correct design*/}
-        <aside>
-          <img
-            className="w-[243px] h-[calc(100vh-72px)]"
-            src="/sidebar.jpg"
-            alt="sidebar-example-img"
-          />
-        </aside>
-        {/* Sidebar end */}
-
-        <section className="flex-auto px-8 py-12">
-          <DonutChart/>
-        </section>
-      </main>
-
-      {/* Main END */}
-
-      {/* //* For go back */}
-      <Link
-        className="absolute left-0 top-1/2 text-lg text-blue-800 font-bold"
-        href="/"
-      >
-        To back. Just for going back
-      </Link>
-    </>
+      <div className="bg-white max-w-[740px] p-4 rounded-md">
+        <BudgetChart />
+      </div>
+    </Layout>
   );
 };
 

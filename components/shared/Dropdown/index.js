@@ -1,12 +1,13 @@
 import { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import map from "lodash/map";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function TotalDropdown({ dropdownFor }) {
+export default function TotalDropdown({ dropdownFor = 'ALL_NETWORKS' }) {
   const dropdownTypes = [
     {
       type: "TOKEN_PRICES",
@@ -23,12 +24,6 @@ export default function TotalDropdown({ dropdownFor }) {
         "10 days average",
         "5 days average",
       ],
-    },
-    {
-      type: "EXPORT",
-      name: "Export",
-      color: "black",
-      options: ["Example 1", "Example 2", "Example 3"],
     },
     {
       type: "ALL_NETWORKS",
@@ -60,7 +55,7 @@ export default function TotalDropdown({ dropdownFor }) {
     dropdownTypes.find((e) => e.type == dropdownFor)
   );
   return (
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as="div" className="relative inline-block text-left ml-4">
       <div>
         <Menu.Button
           className={`inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-2 py-2 text-xs font-semibold text-${dropdownType.color} shadow-sm hover:bg-gray-50  `}
@@ -81,8 +76,7 @@ export default function TotalDropdown({ dropdownFor }) {
       >
         <Menu.Items className="absolute left-0 z-10  w-40 origin-top-right rounded-md bg-transparent focus:outline-none">
           <div className="py-1">
-            {/* Creating Dropdown Values */}
-            {dropdownType.options.map((option, index) => {
+            {map(dropdownType.options , (option, index) => {
               return (
                 <Menu.Item key={index}>
                   {({ active }) => (
@@ -95,7 +89,6 @@ export default function TotalDropdown({ dropdownFor }) {
                       )}
                       onClick={() =>
                         setDropdownType((prevState) => ({
-                          // For update dropdown selected
                           name: option,
                           type: prevState.type,
                           color: prevState.color,

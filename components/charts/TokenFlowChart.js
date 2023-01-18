@@ -10,6 +10,9 @@ export default function TokenFlow({ leftBar }) {
         show: false,
       },
     },
+    annotations: {
+      position: 'front' ,
+    },
     legend: {
       position: "top",
       fontWeight: 700,
@@ -25,6 +28,7 @@ export default function TokenFlow({ leftBar }) {
       bar: {
         horizontal: false,
         columnWidth: "40%",
+
         endingShape: "rounded",
       },
     },
@@ -37,6 +41,11 @@ export default function TokenFlow({ leftBar }) {
       curve: "smooth",
     },
     grid: {
+      position:'back',
+      padding:{
+        right: 40,
+        left: 40
+      },
       yaxis: {
         lines: {
           show: false,
@@ -61,9 +70,6 @@ export default function TokenFlow({ leftBar }) {
         "Sep",
         "Oct",
       ],
-      tooltip: {
-        enabled: false,
-      },
       axisBorder: {
         color: "#CCD6EB",
         offsetY: 8,
@@ -88,7 +94,7 @@ export default function TokenFlow({ leftBar }) {
     {
       name: "Inflow",
       type: "column",
-      data: [230, 200, 100, 235, 270, 270, 270],
+      data: [230, 200, 100, 235, 270, 270, 270,],
     },
     {
       name: "Outflow",

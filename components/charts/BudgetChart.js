@@ -57,9 +57,6 @@ export default function BudgetChart({ leftBar}) {
         "Sep",
         "Oct",
       ],
-      tooltip: {
-        enabled: false,
-      },
       axisBorder: {
         color: "#CCD6EB",
         offsetY: 8,

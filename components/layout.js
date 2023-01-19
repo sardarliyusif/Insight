@@ -12,15 +12,15 @@ const Layout = ({ children }) => {
         />
       </header>
       <main className="flex bg-light">
-        <aside>
+        <aside className="min-w-[243px]">
           <img
-            className="w-[243px] h-[calc(100vh-72px)]"
+            className="w-full h-[calc(100vh-72px)]"
             src="/sidebar.jpg"
             alt="sidebar-example-img"
           />
         </aside>
 
-        <section className="flex-auto px-8 py-12">{children}</section>
+        <section className="flex-auto px-8 py-12 flex flex-col">{children}</section>
       </main>
       <Link
         className="absolute left-0 top-1/2 text-base text-blue-800 font-bold"

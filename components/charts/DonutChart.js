@@ -43,7 +43,7 @@ export default function DonutChart() {
       series={series}
       type="donut"
       height={350}
-      width={350}
+      width={'100%'}
     />
   );
 }

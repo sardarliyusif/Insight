@@ -1,16 +1,17 @@
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-export default function BudgetChart({ leftBar}) {
+export default function BudgetChart({ leftBar, height }) {
   const options = {
     chart: {
       type: "line",
       height: 350,
-      toolbar:{
-        show: false
+      // width: "100%",
+      toolbar: {
+        show: false,
       },
     },
-    
+
     legend: {
       position: "top",
       fontWeight: 700,
@@ -25,7 +26,7 @@ export default function BudgetChart({ leftBar}) {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: "55%",
+        columnWidth: "40%",
         endingShape: "rounded",
       },
     },
@@ -47,6 +48,7 @@ export default function BudgetChart({ leftBar}) {
     },
     xaxis: {
       categories: [
+        "Jan",
         "Feb",
         "Mar",
         "Apr",
@@ -56,6 +58,8 @@ export default function BudgetChart({ leftBar}) {
         "Aug",
         "Sep",
         "Oct",
+        "Nov",
+        "Dec",
       ],
       axisBorder: {
         color: "#CCD6EB",
@@ -66,7 +70,6 @@ export default function BudgetChart({ leftBar}) {
       show: leftBar,
     },
 
-    
     fill: {
       opacity: 1,
     },
@@ -82,22 +85,21 @@ export default function BudgetChart({ leftBar}) {
     {
       name: "Budgeted",
       type: "column",
-      data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
+      data: [59, 76, 85, 101, 98, 87, 105, 91, 114, 94, 83, 105],
     },
     {
       name: "Actual",
       type: "column",
-      data: [50, 55, 57, 56, 61, 58, 63, 60, 66],
+      data: [35, 50, 55, 57, 56, 61, 58, 63, 60, 66, 70, 54],
     },
   ];
   return (
-    
     <Chart
       options={options}
       series={series}
       type="line"
-      height={350}
-      width={700}
+      height={height}
+      width={'100%'}
     />
   );
 }

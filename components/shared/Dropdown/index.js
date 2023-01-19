@@ -58,7 +58,7 @@ export default function TotalDropdown({ dropdownFor = 'ALL_NETWORKS' }) {
     <Menu as="div" className="relative inline-block text-left ml-4">
       <div>
         <Menu.Button
-          className={`inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-2 py-2 text-xs font-semibold text-${dropdownType.color} shadow-sm hover:bg-gray-50  `}
+          className={`inline-flex w-full justify-center rounded-md border border-gray-300 bg-white xl:py-2 lg:py-1 xl:px-2 lg:px-1 xl:text-xs lg:text-xxs font-semibold text-${dropdownType.color} shadow-sm hover:bg-gray-50  `}
         >
           {dropdownType.name}
           <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />

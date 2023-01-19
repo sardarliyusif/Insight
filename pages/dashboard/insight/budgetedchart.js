@@ -10,8 +10,11 @@ const Budgetedchart = () => {
       <Head>
         <title>Budget chart page</title>
       </Head>
-      <Link href='/dashboard/insight'>Go back</Link>
-      <BudgetChart leftBar={true}/>
+      <Link href='/dashboard/insight' className='text-lg font-medium'>{'<<Back'}</Link>
+      <p className='mt-[5rem] mb-4 text-xl font-semibold'>Budgeted and Actual Spending</p>
+      <div className="bg-white p-4 mb-8 rounded-md w-full">
+          <BudgetChart leftBar={true} height={470}/>
+      </div>
     </Layout>
   )
 }

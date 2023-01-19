@@ -1,10 +1,11 @@
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-export default function TokenFlow({ leftBar }) {
+export default function TokenFlow({ leftBar , height }) {
   const options = {
     chart: {
       type: "line",
+      // width: "100%",
       height: 350,
       toolbar: {
         show: false,
@@ -27,7 +28,7 @@ export default function TokenFlow({ leftBar }) {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: "40%",
+        columnWidth: "20%",
 
         endingShape: "rounded",
       },
@@ -99,7 +100,7 @@ export default function TokenFlow({ leftBar }) {
     {
       name: "Outflow",
       type: "column",
-      data: [170, 505, 414, 671, 227, 413, 201],
+      data: [170, 505, 414, 671, 590, 413, 601],
     },
     {
       name: "Netflow",
@@ -113,8 +114,8 @@ export default function TokenFlow({ leftBar }) {
       options={options}
       series={series}
       type="line"
-      height={350}
-      width={700}
+      height={height}
+      width={'100%'}
     />
   );
 }

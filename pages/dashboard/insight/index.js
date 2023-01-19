@@ -7,6 +7,7 @@ import TokenFlow from "../../../components/charts/TokenFlowChart";
 import Layout from "../../../components/layout";
 import MyButton from "../../../components/shared/Button";
 import TotalDropdown from "../../../components/shared/Dropdown";
+import TotalTokens from "../../../components/TotalTokens";
 
 const Insight = () => {
   const [chartDate, setChartDate] = useState("week");
@@ -16,10 +17,12 @@ const Insight = () => {
         <title>Insight page</title>
       </Head>
 
-      <div className="flex justify-between mb-9">
-        <div className="text-2xl font-semibold tracking-wide">Insights</div>
-        <div className="flex">
-          <div className="flex gap-7 max-w-max py-2 px-4 rounded-md  bg-white border border-[#d6d6d6]">
+      <div className="xl:flex justify-between mb-9">
+        <div className="text-2xl font-semibold tracking-wide xl:mb-0 lg:mb-4">
+          Insights
+        </div>
+        <div className="flex lg:justify-between">
+          <div className="flex xl:gap-7 lg:gap-4 max-w-max py-2 px-4 rounded-md  bg-white border border-[#d6d6d6]">
             <span
               className={`${
                 chartDate === "week" && "!text-primary text-opacity-100"
@@ -61,39 +64,45 @@ const Insight = () => {
         </div>
       </div>
 
-      <div className="flex bg-white rounded-md py-4 px-5">
-        <div className="w-1/5">
-          <p className="text-sm text text-greylish">Total spendin</p>
-          <p className="font-bold xl:text-3xl lg:text-2xl my-5">$5,000,000</p>
+      <TotalTokens />
+
+      <div className="yoxlama flex flex-wrap justify-between">
+        <Link href="/dashboard/insight/budgetedchart" className="1 w-[70%] bg-white p-4 mb-8 rounded-md">
+          <BudgetChart height={350} />
+        </Link>
+        <div className="2 w-[27%] bg-white p-4 mb-8 rounded-md">
+          <DonutChart />
         </div>
-        <div className="w-1/5">
-          <p className="text-sm text text-greylish">Total token netflow</p>
-          <p className="font-bold xl:text-3xl lg:text-2xl my-5">$1,000,000</p>
-        </div>
-        <div className="w-1/5">
-          <p className="text-sm text text-greylish">Total token inflow</p>
-          <p className="font-bold xl:text-3xl lg:text-2xl my-5">$1,500,000</p>
-        </div>
-        <div className="w-1/5">
-          <p className="text-sm text text-greylish">Total token outflow</p>
-          <p className="font-bold xl:text-3xl lg:text-2xl my-5">$500,000</p>
-        </div>
-        <div className="w-1/5">
-          <p className="text-sm text text-greylish">Total network fee</p>
-          <p className="font-bold xl:text-3xl lg:text-2xl my-5">$500,500</p>
+        <Link href="/dashboard/insight/tokenflowchart" className="3 w-[70%] bg-white p-4 mb-8 rounded-md">
+          <TokenFlow height={350} />
+        </Link>
+        <div className="4 w-[27%] bg-white p-4 mb-8 rounded-md">
+          <DonutChart />
         </div>
       </div>
 
-      <BudgetChart />
-      <TokenFlow />
-      <DonutChart />
-
-      {/* <div className="bg-white max-w-[740px] p-4 mb-8 rounded-md">
-        <TokenFlow />
+      {/* <div className="flex gap-12 justify-between">
+        <Link
+          href="/dashboard/insight/budgetedchart"
+          className="bg-white bg-salam p-4 mb-8 relative"
+        >
+          <BudgetChart height={350} />
+        </Link>
+        <div className="bg-white p-4 mb-8  rounded-md">
+          <DonutChart />
+        </div>
       </div>
-
-      <div className="bg-white max-w-[740px] p-4 rounded-md">
-        <BudgetChart />
+      <div className="flex gap-12 justify-between">
+        <Link
+          href="/dashboard/insight/tokenflowchart"
+          className="bg-white p-4 mb-8 rounded-md "
+        >
+          <TokenFlow height={350} />
+        </Link>
+        <div className="bg-white p-4 mb-8  rounded-md">
+          <DonutChart />
+        </div>
+        
       </div> */}
     </Layout>
   );

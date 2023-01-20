@@ -45,14 +45,14 @@ export default function TotalDropdown({ dropdownFor = 'ALL_NETWORKS' }) {
       name: "Labels",
       color: "greylish",
       backgroundColor: 'greylish',
-      options: ["Blockchain", "Wallet", "Token", "Budget"],
+      options: ["Labels","Blockchain", "Wallet", "Token", "Budget"],
     },
     {
-      type: "TOKEN",
-      name: "Token",
+      type: "BLOCKCHAIN",
+      name: "Blockhain",
       color: "greylish",
       backgroundColor: 'greylish',
-      options: ["Blockchain", "Wallet"],
+      options: ["Token","Blockchain", "Wallet"],
     },
   ];
 

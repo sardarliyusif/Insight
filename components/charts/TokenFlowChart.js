@@ -1,11 +1,32 @@
 import dynamic from "next/dynamic";
+import { useSelector } from "react-redux";
+import { SelectChartDate, SelectTimes } from "../../redux/features/Insight/insightSlice";
+import dateFormat from 'dateformat';
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function TokenFlow({ leftBar , height , align ='center' }) {
+  const chartDate = useSelector(SelectChartDate)
+  const times = useSelector(SelectTimes)
+  let selectedTimes;
+  if(chartDate === 'week'){
+    selectedTimes = times.forWeek.tokenflowData
+  }else if (chartDate === 'month'){
+    selectedTimes = times.forMonth.tokenflowData
+  }else if (chartDate === 'quart'){
+    selectedTimes = times.forQuart.tokenflowData
+  }else{
+    selectedTimes = times.forYear.tokenflowData
+  }
+  const inflowData = selectedTimes.inflow
+  const outflowData = selectedTimes.outflow
+  const netflowData = selectedTimes.netflow
+
+  const keys = Object.keys(inflowData).map(s => new Date(s).getTime())
+  const symbol = '$'
+
   const options = {
     chart: {
       type: "line",
-      // width: "100%",
       height: 350,
       toolbar: {
         show: false,
@@ -29,7 +50,7 @@ export default function TokenFlow({ leftBar , height , align ='center' }) {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: "20%",
+        columnWidth: "40%",
 
         endingShape: "rounded",
       },
@@ -61,52 +82,73 @@ export default function TokenFlow({ leftBar , height , align ='center' }) {
       strokeWidth: 4,
     },
     xaxis: {
+      type: "datetime",
+      tickPlacement: "on",
+      labels: {
+        formatter: (val) => {
+          if (chartDate === "week") {
+            return dateFormat(val, "ddd")
+          }
+          if (chartDate === "month" || chartDate === "quart") {
+            return dateFormat(val, "dd mmm")
+          }
+          return dateFormat(val, "mmm");
+        }
+      },
       categories: [
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
+        ...Object.entries(inflowData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
       ],
       axisBorder: {
         color: "#CCD6EB",
-        offsetY: 8,
+        offsetY: 7,
       },
     },
 
     yaxis: {
-      show: leftBar,
+      show: false,
     },
     fill: {
       opacity: 1,
     },
     tooltip: {
-      y: {
-        formatter: function (val) {
-          return "$" + val + "k";
-        },
+      x: {
+        format: "dd MMM yyyy",
+        formatter: (value, { series, seriesIndex, dataPointIndex, w }) => {
+
+          if (chartDate === "week") {
+            return dateFormat(value, "ddd")
+          }
+          if (chartDate === "month" || chartDate === "quart") {
+            return dateFormat(value, "dd mmm")
+          }
+          return dateFormat(value, "mmm");
+        }
+
       },
+      
     },
   };
   const series = [
     {
       name: "Inflow",
       type: "column",
-      data: [230, 200, 100, 235, 270, 270, 270,],
+      data: [
+        ...Object.entries(inflowData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+      ],
     },
     {
       name: "Outflow",
       type: "column",
-      data: [170, 505, 414, 671, 590, 413, 601],
+      data: [
+        ...Object.entries(outflowData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+      ],
     },
     {
       name: "Netflow",
       type: "line",
-      data: [230, 180, 240, 600, 240, 340, 240],
+      data: [
+        ...Object.entries(netflowData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+      ],
     },
   ];
 

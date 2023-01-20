@@ -1,12 +1,31 @@
 import dynamic from "next/dynamic";
+import { useSelector } from "react-redux";
+import { SelectChartDate, SelectTimes } from "../../redux/features/Insight/insightSlice";
+import dateFormat from 'dateformat';
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function BudgetChart({ leftBar, height , align='center' }) {
+  const chartDate = useSelector(SelectChartDate)
+  const times = useSelector(SelectTimes)
+  let selectedTimes;
+  if(chartDate === 'week'){
+    selectedTimes = times.forWeek.budgetData
+  }else if (chartDate === 'month'){
+    selectedTimes = times.forMonth.budgetData
+  }else if (chartDate === 'quart'){
+    selectedTimes = times.forQuart.budgetData
+  }else{
+    selectedTimes = times.forYear.budgetData
+  }
+  const actualData = selectedTimes.actual
+  const budgetedData = selectedTimes.budgeted
+  const keys = Object.keys(actualData).map(s => new Date(s).getTime())
+  const symbol = '$'
+  
   const options = {
     chart: {
       type: "line",
       height: 350,
-      // width: "100%",
       toolbar: {
         show: false,
       },
@@ -48,50 +67,66 @@ export default function BudgetChart({ leftBar, height , align='center' }) {
       },
     },
     xaxis: {
+      type: "datetime",
+      tickPlacement: "on",
+      labels: {
+        formatter: (val) => {
+          if (chartDate === "week") {
+            return dateFormat(val, "ddd")
+          }
+          if (chartDate === "month" || chartDate === "quart") {
+            return dateFormat(val, "dd mmm")
+          }
+          return dateFormat(val, "mmm");
+        }
+      },
       categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
+        ...Object.entries(actualData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
       ],
       axisBorder: {
         color: "#CCD6EB",
-        offsetY: 8,
+        offsetY: 7,
       },
     },
     yaxis: {
-      show: leftBar,
+      show: false,
     },
 
     fill: {
       opacity: 1,
     },
     tooltip: {
-      y: {
-        formatter: function (val) {
-          return "$" + val + "k";
-        },
+      x: {
+        format: "dd MMM yyyy",
+        formatter: (value, { series, seriesIndex, dataPointIndex, w }) => {
+
+          if (chartDate === "week") {
+            return dateFormat(value, "ddd")
+          }
+          if (chartDate === "month" || chartDate === "quart") {
+            return dateFormat(value, "dd mmm")
+          }
+          return dateFormat(value, "mmm");
+        }
+
       },
+      
     },
   };
   const series = [
     {
       name: "Budgeted",
       type: "column",
-      data: [59, 76, 85, 101, 98, 87, 105, 91, 114, 94, 83, 105],
+      data: [
+        ...Object.entries(actualData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+      ],
     },
     {
       name: "Actual",
       type: "column",
-      data: [35, 50, 55, 57, 56, 61, 58, 63, 60, 66, 70, 54],
+      data: [
+        ...Object.entries(budgetedData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+      ],
     },
   ];
   return (

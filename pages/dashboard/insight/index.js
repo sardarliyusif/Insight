@@ -22,7 +22,7 @@ const Insight = () => {
           Insights
         </div>
         <div className="flex lg:justify-between">
-          <div className="flex xl:gap-7 lg:gap-4 max-w-max py-2 px-4 rounded-md  bg-white border border-[#d6d6d6]">
+        <div className="flex xl:gap-7 lg:gap-4 max-w-max py-2 px-4 rounded-md  bg-white border border-[#d6d6d6]">
             <span
               className={`${
                 chartDate === "week" && "!text-primary text-opacity-100"
@@ -66,44 +66,38 @@ const Insight = () => {
 
       <TotalTokens />
 
-      <div className="yoxlama flex flex-wrap justify-between">
-        <Link href="/dashboard/insight/budgetedchart" className="1 w-[70%] bg-white p-4 mb-8 rounded-md">
-          <BudgetChart height={350} />
-        </Link>
-        <div className="2 w-[27%] bg-white p-4 mb-8 rounded-md">
-          <DonutChart />
-        </div>
-        <Link href="/dashboard/insight/tokenflowchart" className="3 w-[70%] bg-white p-4 mb-8 rounded-md">
-          <TokenFlow height={350} />
-        </Link>
-        <div className="4 w-[27%] bg-white p-4 mb-8 rounded-md">
-          <DonutChart />
-        </div>
-      </div>
-
-      {/* <div className="flex gap-12 justify-between">
+      <div className="flex flex-wrap justify-between ">
         <Link
           href="/dashboard/insight/budgetedchart"
-          className="bg-white bg-salam p-4 mb-8 relative"
+          className="1 w-[67%] xl:max-h-min bg-white p-4 mb-8 rounded-md relative mt-16"
         >
+          <p className="absolute -top-12 text-sm text-greylish font-semibold">
+            Budgeted and Actual Spending
+          </p>
           <BudgetChart height={350} />
         </Link>
-        <div className="bg-white p-4 mb-8  rounded-md">
+        <div className="2 w-[30%] bg-white p-4 mb-8 rounded-md mt-16 relative">
           <DonutChart />
+          <div className="absolute -left-3 -top-12">
+            <TotalDropdown dropdownFor="LABELS" />
+          </div>
         </div>
-      </div>
-      <div className="flex gap-12 justify-between">
         <Link
           href="/dashboard/insight/tokenflowchart"
-          className="bg-white p-4 mb-8 rounded-md "
+          className="3 w-[67%] bg-white p-4 mb-8 rounded-md relative mt-16"
         >
+          <p className="absolute -top-12 text-sm text-greylish font-semibold">
+            Budgeted and Actual Spending
+          </p>
           <TokenFlow height={350} />
         </Link>
-        <div className="bg-white p-4 mb-8  rounded-md">
+        <div className="4 w-[30%] bg-white p-4 mb-8 rounded-md mt-16 relative">
           <DonutChart />
+          <div className="absolute -left-3 -top-12">
+            <TotalDropdown dropdownFor="TOKEN" />
+          </div>
         </div>
-        
-      </div> */}
+      </div>
     </Layout>
   );
 };

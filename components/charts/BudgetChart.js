@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-export default function BudgetChart({ leftBar, height }) {
+export default function BudgetChart({ leftBar, height , align='center' }) {
   const options = {
     chart: {
       type: "line",
@@ -15,6 +15,7 @@ export default function BudgetChart({ leftBar, height }) {
     legend: {
       position: "top",
       fontWeight: 700,
+      horizontalAlign: `${align}`, 
       labels: {
         colors: ["#333333"],
       },

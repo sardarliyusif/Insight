@@ -13,6 +13,7 @@ export default function TotalDropdown({ dropdownFor = 'ALL_NETWORKS' }) {
       type: "TOKEN_PRICES",
       name: "Token Prices",
       color: "black",
+      backgroundColor: 'white',
       options: [
         "Current price",
         "Transaction time price",
@@ -29,24 +30,28 @@ export default function TotalDropdown({ dropdownFor = 'ALL_NETWORKS' }) {
       type: "ALL_NETWORKS",
       name: "All Networks",
       color: "black",
+      backgroundColor: 'white',
       options: ["Example 1", "Example 2", "Example 3"],
     },
     {
       type: "ALL_WALLETS",
       name: "All Wallets",
       color: "black",
+      backgroundColor: 'white',
       options: ["Example 1", "Example 2", "Example 3"],
     },
     {
       type: "LABELS",
       name: "Labels",
       color: "greylish",
+      backgroundColor: 'greylish',
       options: ["Blockchain", "Wallet", "Token", "Budget"],
     },
     {
       type: "TOKEN",
       name: "Token",
       color: "greylish",
+      backgroundColor: 'greylish',
       options: ["Blockchain", "Wallet"],
     },
   ];
@@ -58,7 +63,7 @@ export default function TotalDropdown({ dropdownFor = 'ALL_NETWORKS' }) {
     <Menu as="div" className="relative inline-block text-left ml-4">
       <div>
         <Menu.Button
-          className={`inline-flex w-full justify-center rounded-md border border-gray-300 bg-white xl:py-2 lg:py-1 xl:px-2 lg:px-1 xl:text-xs lg:text-xxs font-semibold text-${dropdownType.color} shadow-sm hover:bg-gray-50  `}
+          className={`inline-flex w-full justify-center rounded-md border leading-5 border-gray-300 bg-${dropdownType.backgroundColor} xl:py-2 lg:py-2 xl:px-2 lg:px-3 xl:text-xs lg:text-xxs font-semibold text-${dropdownType.color} shadow-sm hover:bg-gray-50  `}
         >
           {dropdownType.name}
           <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
@@ -97,6 +102,7 @@ export default function TotalDropdown({ dropdownFor = 'ALL_NETWORKS' }) {
                       }
                     >
                       {option}
+                      
                     </p>
                   )}
                 </Menu.Item>

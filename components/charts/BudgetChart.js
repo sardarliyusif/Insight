@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
-import { SelectChartDate, SelectTimes } from "../../redux/features/Insight/insightSlice";
+import { SelectChartDate, SelectTimes } from "../../redux/features/insightSlice";
 import dateFormat from 'dateformat';
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 

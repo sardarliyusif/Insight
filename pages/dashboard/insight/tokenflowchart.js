@@ -4,7 +4,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TokenFlow from "../../../components/charts/TokenFlowChart";
 import Layout from "../../../components/layout";
-import { changeChartDate, SelectChartDate } from "../../../redux/features/insight/insightSlice";
+import { changeChartDate, SelectChartDate } from "../../../redux/features/insightSlice";
 
 const Tokenflowchart = () => {
   const chartDate = useSelector(SelectChartDate)

@@ -6,7 +6,7 @@ import {
   changeChartDate,
   SelectChartDate,
   SelectTimes,
-} from "../../../redux/features/insight/insightSlice";
+} from "../../../redux/features/insightSlice";
 import BudgetChart from "../../../components/charts/BudgetChart";
 import DonutChart from "../../../components/charts/DonutChart";
 import TokenFlow from "../../../components/charts/TokenFlowChart";

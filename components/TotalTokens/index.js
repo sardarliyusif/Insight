@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { SelectChartDate, SelectTimes } from '../../redux/features/Insight/insightSlice'
+import { SelectChartDate, SelectTimes } from '../../redux/features/insightSlice'
 
 const TotalTokens = () => {
   const chartDate = useSelector(SelectChartDate)

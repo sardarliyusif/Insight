@@ -1,7 +1,7 @@
 import { forEach } from "lodash";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { SelectChartDate, SelectTimes } from "../../redux/features/Insight/insightSlice";
+import { SelectChartDate, SelectTimes } from "../../redux/features/insightSlice";
 
 export default function BlockChainModal({ setShowBlockChainModal, showBlockChainModal }) {
     const chartDate = useSelector(SelectChartDate);

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import insightReducer from './features/insight/insightSlice'
+import insightReducer from './features/insightSlice'
 
 export const store = configureStore({
   reducer: {

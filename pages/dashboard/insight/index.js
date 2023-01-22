@@ -110,7 +110,7 @@ const Insight = () => {
           <div className="absolute -left-3 -top-12">
             <TotalDropdown dropdownFor="LABELS" />
           </div>
-          <div className="hidden xl:flex text-base font-medium absolute xl:right-6 2xl:right-9 justify-between xl:w-36 2xl:w-52 bottom-16">
+          <div className="hidden xl:flex text-base font-medium absolute xl:right-6 2xl:right-9 justify-between xl:w-32 xxl:w-36 2xl:w-44 bottom-16">
             <ul>
             <li>${donutData.firstExample > 999999 ? `${donutData.firstExample/1000000}M` : donutData.firstExample.toLocaleString("en-US")}</li>
               <li>${donutData.secondExample > 999999 ? `${donutData.secondExample/1000000}M` : donutData.secondExample.toLocaleString("en-US")}</li>

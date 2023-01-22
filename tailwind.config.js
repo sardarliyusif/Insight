@@ -41,6 +41,7 @@ module.exports = {
         navbarShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
       },
       screens: {
+        "xxl":"1400px",
         "3xl": "1920px",
       },
     },

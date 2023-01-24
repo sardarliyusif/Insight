@@ -21,7 +21,7 @@ const Budgetedchart = () => {
         Budgeted and Actual Spending
       </p>
       <div className="bg-white p-4 mb-8 rounded-md w-full relative">
-      <div className="flex xl:gap-7 lg:gap-4 max-w-max py-2 px-4 rounded-md  bg-white border border-[#d6d6d6]">
+      <div className="flex xl:gap-7 lg:gap-4 max-w-max py-2 px-4 rounded-md absolute right-14 z-10 bg-white">
             <span
               className={`${
                 chartDate === "week" && "!text-primary text-opacity-100"

@@ -39,6 +39,7 @@ module.exports = {
         custom: "0px 0px 4px 0px #dad8d8",
         customDark: "0px 0px 4px 0px #1C1C1C",
         navbarShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        chartShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
       },
       screens: {
         "xxl":"1400px",

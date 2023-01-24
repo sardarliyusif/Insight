@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import BasicSelect from '../components/shared/Dropdown/test'
 
 
 export default function Home() {
@@ -15,6 +16,9 @@ export default function Home() {
       <h1 className='text-6xl font-bold text-blue-900'>WELCOME</h1>
       <h1 className='text-5xl font-bold text-red-700'>⬇⬇ Click below to see Insight Page ⬇⬇</h1>
       <Link href='/dashboard/insight' className='text-4xl font-bold text-green-700'>➡ To Insight ⬅</Link>
+      <BasicSelect sx={{
+              height: "1.875rem",
+            }}/>
       </div>
     </>
   )

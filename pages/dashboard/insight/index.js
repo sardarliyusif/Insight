@@ -21,7 +21,14 @@ import BlockChainModal from "../../../components/modals/BlockChainModal";
 const Insight = () => {
   const [showLabelModal, setShowLabelModal] = useState(false);
   const [showBlockChainModal, setShowBlockChainModal] = useState(false);
-
+  if (typeof window !== 'undefined') {
+    if(showLabelModal || showBlockChainModal){
+      document.body.style.height = '100vh'
+    }else{
+      document.body.style.height = 'unset'
+    }
+  }
+  
   const chartDate = useSelector(SelectChartDate);
   const times = useSelector(SelectTimes);
   let donutData;
@@ -46,7 +53,7 @@ const Insight = () => {
         <title>Insight page</title>
       </Head>
 
-      <div className="xl:flex justify-between mb-9">
+      <div className={`xl:flex justify-between mb-9`}>
         <div className="text-2xl font-semibold tracking-wide xl:mb-0 lg:mb-4">
           Insights
         </div>
@@ -88,7 +95,7 @@ const Insight = () => {
           <TotalDropdown dropdownFor="TOKEN_PRICES" />
           <TotalDropdown />
           <TotalDropdown dropdownFor="ALL_WALLETS" />
-          <MyButton type="refresh" />
+          <MyButton type="export" />
           <MyButton />
         </div>
       </div>
@@ -98,14 +105,14 @@ const Insight = () => {
       <div className="flex flex-wrap justify-between ">
         <Link
           href="/dashboard/insight/budgetedchart"
-          className="1 w-[67%] xl:max-h-min bg-white p-4 mb-8 rounded-md relative mt-16"
+          className="1 w-[67%] xl:max-h-min bg-white p-4 mb-8 rounded-md relative mt-16 shadow-chartShadow"
         >
-          <p className="absolute -top-12 text-sm text-greylish font-semibold">
+          <p className="absolute -top-10 text-sm text-greylish font-semibold">
             Budgeted and Actual Spending
           </p>
           <BudgetChart height={350} />
         </Link>
-        <div className="2 w-[30%] bg-white p-4 mb-8 rounded-md mt-16 relative">
+        <div className="2 w-[30%] bg-white p-4 mb-8 rounded-md mt-16 relative shadow-chartShadow">
           <DonutChart donutFor="LABELS" />
           <div className="absolute -left-3 -top-12">
             <TotalDropdown dropdownFor="LABELS" />
@@ -130,14 +137,14 @@ const Insight = () => {
         </div>
         <Link
           href="/dashboard/insight/tokenflowchart"
-          className="3 w-[67%] bg-white p-4 mb-8 rounded-md relative mt-16"
+          className="3 w-[67%] bg-white p-4 mb-8 rounded-md relative mt-16 shadow-chartShadow"
         >
-          <p className="absolute -top-12 text-sm text-greylish font-semibold">
-            Budgeted and Actual Spending
+          <p className="absolute -top-10 text-sm text-greylish font-semibold">
+          Token flow
           </p>
           <TokenFlow height={350} />
         </Link>
-        <div className="4 w-[30%] bg-white p-4 mb-8 rounded-md mt-16 relative">
+        <div className="4 w-[30%] bg-white p-4 mb-8 rounded-md mt-16 relative shadow-chartShadow">
           <DonutChart donutFor="TOKEN" />
           <div className="absolute -left-3 -top-12">
             <TotalDropdown dropdownFor="BLOCKCHAIN" />
@@ -162,6 +169,7 @@ const Insight = () => {
         </div>
         <LabelModal {...{setShowLabelModal,showLabelModal}}/>
         <BlockChainModal {...{setShowBlockChainModal, showBlockChainModal}}/>
+        
         
       </div>
     </Layout>

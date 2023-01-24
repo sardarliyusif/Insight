@@ -118,14 +118,14 @@ export default function BudgetChart({ leftBar, height , align='center' }) {
       name: "Budgeted",
       type: "column",
       data: [
-        ...Object.entries(actualData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+        ...Object.entries(budgetedData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
       ],
     },
     {
       name: "Actual",
       type: "column",
       data: [
-        ...Object.entries(budgetedData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+        ...Object.entries(actualData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
       ],
     },
   ];

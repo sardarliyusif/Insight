@@ -21,7 +21,7 @@ const TotalTokens = () => {
           <p className="xl:text-sm lg:text-xxs text text-greylish font-semibold">
             Total spending
           </p>
-          <p className="font-bold xl:text-3xl lg:text-xl xl:my-5 lg:my-3">
+          <p className="font-semibold xl:text-3xl lg:text-xl xl:my-5 lg:my-3">
             ${selectedTimes.totalSpending.toLocaleString("en-US")}
           </p>
         </div>
@@ -29,7 +29,7 @@ const TotalTokens = () => {
           <p className="xl:text-sm lg:text-xxs text text-greylish font-semibold">
             Total token netflow
           </p>
-          <p className="font-bold xl:text-xl lg:text-xl xl:my-5 lg:my-3">
+          <p className="font-semibold xl:text-xl lg:text-xl xl:my-5 lg:my-3">
           ${selectedTimes.totalTokenNetflow.toLocaleString("en-US")}
           </p>
         </div>
@@ -37,7 +37,7 @@ const TotalTokens = () => {
           <p className="xl:text-sm lg:text-xxs text text-greylish font-semibold">
             Total token inflow
           </p>
-          <p className="font-bold xl:text-xl lg:text-xl xl:my-5 lg:my-3">
+          <p className="font-semibold xl:text-xl lg:text-xl xl:my-5 lg:my-3">
           ${selectedTimes.totalTokenInflow.toLocaleString("en-US")}
           </p>
         </div>
@@ -45,7 +45,7 @@ const TotalTokens = () => {
           <p className="xl:text-sm lg:text-xxs text text-greylish font-semibold">
             Total token outflow
           </p>
-          <p className="font-bold xl:text-xl lg:text-xl xl:my-5 lg:my-3">
+          <p className="font-semibold xl:text-xl lg:text-xl xl:my-5 lg:my-3">
           ${selectedTimes.totalTokenOutflow.toLocaleString("en-US")}
           </p>
         </div>
@@ -53,7 +53,7 @@ const TotalTokens = () => {
           <p className="xl:text-sm lg:text-xxs text text-greylish font-semibold">
             Total network fee
           </p>
-          <p className="font-bold xl:text-xl lg:text-xl xl:my-5 lg:my-3">
+          <p className="font-semibold xl:text-xl lg:text-xl xl:my-5 lg:my-3">
             ${selectedTimes.totalNetworkFee.toLocaleString("en-US")}
           </p>
         </div>

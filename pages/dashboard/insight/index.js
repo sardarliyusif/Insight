@@ -12,23 +12,23 @@ import DonutChart from "../../../components/charts/DonutChart";
 import TokenFlow from "../../../components/charts/TokenFlowChart";
 import Layout from "../../../components/layout";
 import MyButton from "../../../components/shared/Button";
-import TotalDropdown from "../../../components/shared/Dropdown";
 import TotalTokens from "../../../components/TotalTokens";
 import LabelModal from "../../../components/modals/LabelModal";
 import { forEach } from "lodash";
 import BlockChainModal from "../../../components/modals/BlockChainModal";
+import Dropdown from "../../../components/shared/Dropdown";
 
 const Insight = () => {
   const [showLabelModal, setShowLabelModal] = useState(false);
   const [showBlockChainModal, setShowBlockChainModal] = useState(false);
-  if (typeof window !== 'undefined') {
-    if(showLabelModal || showBlockChainModal){
-      document.body.style.height = '100vh'
-    }else{
-      document.body.style.height = 'unset'
+  if (typeof window !== "undefined") {
+    if (showLabelModal || showBlockChainModal) {
+      document.body.style.height = "100vh";
+    } else {
+      document.body.style.height = "unset";
     }
   }
-  
+
   const chartDate = useSelector(SelectChartDate);
   const times = useSelector(SelectTimes);
   let donutData;
@@ -43,7 +43,7 @@ const Insight = () => {
   }
 
   let totalDonutData = 0;
-  forEach(donutData,(x) => totalDonutData += x)
+  forEach(donutData, (x) => (totalDonutData += x));
 
   const dispatch = useDispatch();
 
@@ -57,8 +57,8 @@ const Insight = () => {
         <div className="text-2xl font-semibold tracking-wide xl:mb-0 lg:mb-4">
           Insights
         </div>
-        <div className="flex lg:justify-between">
-          <div className="flex xl:gap-7 lg:gap-4 max-w-max py-2 px-4 rounded-md  bg-white border border-[#d6d6d6]">
+        <div className="flex lg:justify-between items-center">
+          <div className="flex xl:gap-7 lg:gap-4 max-w-max py-[5px] px-4 rounded-md  bg-white border border-[#d6d6d6]">
             <span
               className={`${
                 chartDate === "week" && "!text-primary text-opacity-100"
@@ -92,9 +92,9 @@ const Insight = () => {
               1Y
             </span>
           </div>
-          <TotalDropdown dropdownFor="TOKEN_PRICES" />
-          <TotalDropdown />
-          <TotalDropdown dropdownFor="ALL_WALLETS" />
+          <Dropdown sx={{ height: "1.875rem" }} dropdownFor="TOKEN_PRICES" />
+          <Dropdown sx={{ height: "1.875rem" }} dropdownFor="ALL_NETWORKS"/>
+          <Dropdown sx={{ height: "1.875rem" }} />
           <MyButton type="export" />
           <MyButton />
         </div>
@@ -114,24 +114,55 @@ const Insight = () => {
         </Link>
         <div className="2 w-[30%] bg-white p-4 mb-8 rounded-md mt-16 relative shadow-chartShadow">
           <DonutChart donutFor="LABELS" />
-          <div className="absolute -left-3 -top-12">
-            <TotalDropdown dropdownFor="LABELS" />
+          <div className="absolute left-0 -top-11">
+          <Dropdown sx={{ height: "1.875rem" }} dropdownFor="LABELS" />
           </div>
           <div className="hidden xl:flex text-base font-medium absolute xl:right-6 2xl:right-9 justify-between xl:w-32 xxl:w-36 2xl:w-44 bottom-16">
             <ul>
-            <li>${donutData.firstExample > 999999 ? `${donutData.firstExample/1000000}M` : donutData.firstExample.toLocaleString("en-US")}</li>
-              <li>${donutData.secondExample > 999999 ? `${donutData.secondExample/1000000}M` : donutData.secondExample.toLocaleString("en-US")}</li>
-              <li>${donutData.thirdExample > 999999 ? `${donutData.thirdExample/1000000}M` : donutData.thirdExample.toLocaleString("en-US")}</li>
-              <li>${donutData.fourthExample > 999999 ? `${donutData.fourthExample/1000000}M` : donutData.fourthExample.toLocaleString("en-US")}</li>
+              <li>
+                $
+                {donutData.firstExample > 999999
+                  ? `${donutData.firstExample / 1000000}M`
+                  : donutData.firstExample.toLocaleString("en-US")}
+              </li>
+              <li>
+                $
+                {donutData.secondExample > 999999
+                  ? `${donutData.secondExample / 1000000}M`
+                  : donutData.secondExample.toLocaleString("en-US")}
+              </li>
+              <li>
+                $
+                {donutData.thirdExample > 999999
+                  ? `${donutData.thirdExample / 1000000}M`
+                  : donutData.thirdExample.toLocaleString("en-US")}
+              </li>
+              <li>
+                $
+                {donutData.fourthExample > 999999
+                  ? `${donutData.fourthExample / 1000000}M`
+                  : donutData.fourthExample.toLocaleString("en-US")}
+              </li>
             </ul>
             <ul>
-              <li>{Math.round(donutData.firstExample/totalDonutData*100)}%</li>
-              <li>{Math.round(donutData.secondExample/totalDonutData*100)}%</li>
-              <li>{Math.round(donutData.thirdExample/totalDonutData*100)}%</li>
-              <li>{Math.round(donutData.fourthExample/totalDonutData*100)}%</li>
+              <li>
+                {Math.round((donutData.firstExample / totalDonutData) * 100)}%
+              </li>
+              <li>
+                {Math.round((donutData.secondExample / totalDonutData) * 100)}%
+              </li>
+              <li>
+                {Math.round((donutData.thirdExample / totalDonutData) * 100)}%
+              </li>
+              <li>
+                {Math.round((donutData.fourthExample / totalDonutData) * 100)}%
+              </li>
             </ul>
           </div>
-          <div className="mt-4 text-center text-primary hover:text-[#FF4513] text-sm font-medium cursor-pointer" onClick={() => setShowLabelModal(true)}>
+          <div
+            className="mt-4 text-center text-primary hover:text-[#FF4513] text-sm font-medium cursor-pointer"
+            onClick={() => setShowLabelModal(true)}
+          >
             Show More
           </div>
         </div>
@@ -140,37 +171,66 @@ const Insight = () => {
           className="3 w-[67%] bg-white p-4 mb-8 rounded-md relative mt-16 shadow-chartShadow"
         >
           <p className="absolute -top-10 text-sm text-greylish font-semibold">
-          Token flow
+            Token flow
           </p>
           <TokenFlow height={350} />
         </Link>
         <div className="4 w-[30%] bg-white p-4 mb-8 rounded-md mt-16 relative shadow-chartShadow">
           <DonutChart donutFor="TOKEN" />
-          <div className="absolute -left-3 -top-12">
-            <TotalDropdown dropdownFor="BLOCKCHAIN" />
+          <div className="absolute left-0 -top-11">
+            <Dropdown sx={{ height: "1.875rem" }} dropdownFor="TOKENS" />
           </div>
           <div className="hidden xl:flex text-base font-medium absolute xl:right-6 2xl:right-9 justify-between xl:w-36 2xl:w-52 bottom-16">
             <ul>
-            <li>${donutData.firstExample > 999999 ? `${donutData.firstExample/1000000}M` : donutData.firstExample.toLocaleString("en-US")}</li>
-              <li>${donutData.secondExample > 999999 ? `${donutData.secondExample/1000000}M` : donutData.secondExample.toLocaleString("en-US")}</li>
-              <li>${donutData.thirdExample > 999999 ? `${donutData.thirdExample/1000000}M` : donutData.thirdExample.toLocaleString("en-US")}</li>
-              <li>${donutData.fourthExample > 999999 ? `${donutData.fourthExample/1000000}M` : donutData.fourthExample.toLocaleString("en-US")}</li>
+              <li>
+                $
+                {donutData.firstExample > 999999
+                  ? `${donutData.firstExample / 1000000}M`
+                  : donutData.firstExample.toLocaleString("en-US")}
+              </li>
+              <li>
+                $
+                {donutData.secondExample > 999999
+                  ? `${donutData.secondExample / 1000000}M`
+                  : donutData.secondExample.toLocaleString("en-US")}
+              </li>
+              <li>
+                $
+                {donutData.thirdExample > 999999
+                  ? `${donutData.thirdExample / 1000000}M`
+                  : donutData.thirdExample.toLocaleString("en-US")}
+              </li>
+              <li>
+                $
+                {donutData.fourthExample > 999999
+                  ? `${donutData.fourthExample / 1000000}M`
+                  : donutData.fourthExample.toLocaleString("en-US")}
+              </li>
             </ul>
             <ul>
-            <li>{Math.round(donutData.firstExample/totalDonutData*100)}%</li>
-              <li>{Math.round(donutData.secondExample/totalDonutData*100)}%</li>
-              <li>{Math.round(donutData.thirdExample/totalDonutData*100)}%</li>
-              <li>{Math.round(donutData.fourthExample/totalDonutData*100)}%</li>
+              <li>
+                {Math.round((donutData.firstExample / totalDonutData) * 100)}%
+              </li>
+              <li>
+                {Math.round((donutData.secondExample / totalDonutData) * 100)}%
+              </li>
+              <li>
+                {Math.round((donutData.thirdExample / totalDonutData) * 100)}%
+              </li>
+              <li>
+                {Math.round((donutData.fourthExample / totalDonutData) * 100)}%
+              </li>
             </ul>
           </div>
-          <div className="mt-4 text-center text-primary hover:text-[#FF4513] text-sm font-medium cursor-pointer" onClick={() => setShowBlockChainModal(true)}>
+          <div
+            className="mt-4 text-center text-primary hover:text-[#FF4513] text-sm font-medium cursor-pointer"
+            onClick={() => setShowBlockChainModal(true)}
+          >
             Show More
           </div>
         </div>
-        <LabelModal {...{setShowLabelModal,showLabelModal}}/>
-        <BlockChainModal {...{setShowBlockChainModal, showBlockChainModal}}/>
-        
-        
+        <LabelModal {...{ setShowLabelModal, showLabelModal }} />
+        <BlockChainModal {...{ setShowBlockChainModal, showBlockChainModal }} />
       </div>
     </Layout>
   );

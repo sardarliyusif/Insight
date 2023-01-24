@@ -51,7 +51,6 @@ export default function TokenFlow({ leftBar , height , align ='center' }) {
       bar: {
         horizontal: false,
         columnWidth: "40%",
-
         endingShape: "rounded",
       },
     },
@@ -60,7 +59,7 @@ export default function TokenFlow({ leftBar , height , align ='center' }) {
     },
     colors: ["#7CB5EC", "#434348", "#F7A35C"],
     stroke: {
-      width: [0, 2, 2],
+      width: [2, 2, 2],
       curve: "smooth",
     },
     grid: {
@@ -89,10 +88,10 @@ export default function TokenFlow({ leftBar , height , align ='center' }) {
           if (chartDate === "week") {
             return dateFormat(val, "ddd")
           }
-          if (chartDate === "month" || chartDate === "quart") {
-            return dateFormat(val, "dd mmm")
+          if (chartDate === "year" || chartDate === "quart") {
+            return dateFormat(val, "mmm")
           }
-          return dateFormat(val, "mmm");
+          return dateFormat(val, "dd mmm");
         }
       },
       categories: [

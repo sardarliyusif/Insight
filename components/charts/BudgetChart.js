@@ -57,9 +57,14 @@ export default function BudgetChart({ leftBar, height , align='center' }) {
     stroke: {
       show: true,
       width: 2,
-      colors: ["transparent"],
+      colors: 'smooth',
     },
     grid: {
+      position:'back',
+      padding:{
+        right: 40,
+        left: 40
+      },
       yaxis: {
         lines: {
           show: false,
@@ -74,14 +79,14 @@ export default function BudgetChart({ leftBar, height , align='center' }) {
           if (chartDate === "week") {
             return dateFormat(val, "ddd")
           }
-          if (chartDate === "month" || chartDate === "quart") {
-            return dateFormat(val, "dd mmm")
+          if (chartDate === "year" || chartDate === "quart") {
+            return dateFormat(val, "mmm")
           }
-          return dateFormat(val, "mmm");
+          return dateFormat(val, "dd mmm");
         }
       },
       categories: [
-        ...Object.entries(actualData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+        ...Object.entries(budgetedData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
       ],
       axisBorder: {
         color: "#CCD6EB",

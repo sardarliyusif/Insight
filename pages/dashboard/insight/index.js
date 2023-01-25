@@ -92,9 +92,9 @@ const Insight = () => {
               1Y
             </span>
           </div>
-          <Dropdown sx={{ height: "1.875rem" }} dropdownFor="TOKEN_PRICES" />
-          <Dropdown sx={{ height: "1.875rem" }} dropdownFor="ALL_NETWORKS"/>
-          <Dropdown sx={{ height: "1.875rem" }} />
+          <Dropdown dropdownFor="TOKEN_PRICES" />
+          <Dropdown dropdownFor="ALL_NETWORKS" />
+          <Dropdown />
           <MyButton type="export" />
           <MyButton />
         </div>
@@ -114,8 +114,8 @@ const Insight = () => {
         </Link>
         <div className="2 w-[30%] bg-white p-4 mb-8 rounded-md mt-16 relative shadow-chartShadow">
           <DonutChart donutFor="LABELS" />
-          <div className="absolute left-0 -top-11">
-          <Dropdown sx={{ height: "1.875rem" }} dropdownFor="LABELS" />
+          <div className="absolute -left-3 -top-12">
+            <Dropdown dropdownFor="LABELS" />
           </div>
           <div className="hidden xl:flex text-base font-medium absolute xl:right-6 2xl:right-9 justify-between xl:w-32 xxl:w-36 2xl:w-44 bottom-16">
             <ul>
@@ -177,8 +177,8 @@ const Insight = () => {
         </Link>
         <div className="4 w-[30%] bg-white p-4 mb-8 rounded-md mt-16 relative shadow-chartShadow">
           <DonutChart donutFor="TOKEN" />
-          <div className="absolute left-0 -top-11">
-            <Dropdown sx={{ height: "1.875rem" }} dropdownFor="TOKENS" />
+          <div className="absolute -left-3 -top-12">
+            <Dropdown dropdownFor="BLOCKCHAIN" />
           </div>
           <div className="hidden xl:flex text-base font-medium absolute xl:right-6 2xl:right-9 justify-between xl:w-36 2xl:w-52 bottom-16">
             <ul>

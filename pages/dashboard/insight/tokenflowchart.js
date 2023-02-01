@@ -14,7 +14,7 @@ const Tokenflowchart = () => {
       <Head>
         <title>Token Flow chart page</title>
       </Head>
-      <Link href="/dashboard/insight" className="text-lg font-medium">
+      <Link href="/dashboard/insight" className="text-lg font-medium hover:text-primary">
         {"<<Back"}
       </Link>
       <div className="bg-white p-4 mb-8 rounded-md mt-[5rem] w-full relative">

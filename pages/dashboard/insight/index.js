@@ -93,7 +93,7 @@ const Insight = () => {
             </span>
           </div>
           <Dropdown dropdownFor="TOKEN_PRICES" />
-          <Dropdown dropdownFor="ALL_NETWORKS" />
+          <Dropdown dropdownFor="ALL_NETWORKS"/>
           <Dropdown />
           <MyButton type="export" />
           <MyButton />
@@ -178,7 +178,7 @@ const Insight = () => {
         <div className="4 w-[30%] bg-white p-4 mb-8 rounded-md mt-16 relative shadow-chartShadow">
           <DonutChart donutFor="TOKEN" />
           <div className="absolute -left-3 -top-12">
-            <Dropdown dropdownFor="BLOCKCHAIN" />
+            <Dropdown dropdownFor="TOKENS" />
           </div>
           <div className="hidden xl:flex text-base font-medium absolute xl:right-6 2xl:right-9 justify-between xl:w-36 2xl:w-52 bottom-16">
             <ul>

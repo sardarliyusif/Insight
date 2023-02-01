@@ -14,7 +14,7 @@ const Budgetedchart = () => {
       <Head>
         <title>Budget chart page</title>
       </Head>
-      <Link href="/dashboard/insight" className="text-lg font-medium">
+      <Link href="/dashboard/insight" className="text-lg font-medium hover:text-primary">
         {"<<Back"}
       </Link>
       <p className="mt-[5rem] mb-4 text-xl font-semibold">

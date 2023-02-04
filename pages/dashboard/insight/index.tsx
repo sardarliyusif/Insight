@@ -7,16 +7,16 @@ import {
   SelectChartDate,
   SelectTimes,
 } from "../../../redux/features/insightSlice";
-import BudgetChart from "../../../components/charts/BudgetChart";
-import DonutChart from "../../../components/charts/DonutChart";
-import TokenFlow from "../../../components/charts/TokenFlowChart";
-import Layout from "../../../components/layout";
-import MyButton from "../../../components/shared/Button";
-import LabelModal from "../../../components/modals/LabelModal";
+import BudgetChart from "../../../Components/charts/BudgetChart";
+import DonutChart from "../../../Components/charts/DonutChart";
+import TokenFlow from "../../../Components/charts/TokenFlowChart";
+import Layout from "../../../Components/layout";
+import MyButton from "../../../Components/shared/Button";
+import LabelModal from "../../../Components/modals/LabelModal";
 import { forEach } from "lodash";
-import BlockChainModal from "../../../components/modals/BlockChainModal";
-import Dropdown from "../../../components/shared/Dropdown";
-import TotalTokens from "../../../components/TotalTokens";
+import BlockChainModal from "../../../Components/modals/BlockChainModal";
+import Dropdown from "../../../Components/shared/Dropdown";
+import TotalTokens from "../../../Components/TotalTokens";
 
 const Insight = () => {
   const [showLabelModal, setShowLabelModal] = useState(false);
@@ -63,7 +63,7 @@ const Insight = () => {
           Insights
         </div>
         <div className="flex lg:justify-between items-center">
-          <div className="flex xl:gap-7 lg:gap-4 max-w-max py-[5px] px-4 rounded-md  bg-white border border-[#d6d6d6]">
+          <div className="flex xl:gap-7 lg:gap-4 max-w-max py-[7px] px-4 rounded-md  bg-white border border-[#d6d6d6]">
             <span
               className={`${
                 chartDate === "week" && "!text-primary text-opacity-100"

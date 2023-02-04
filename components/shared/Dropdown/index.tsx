@@ -88,7 +88,7 @@ export default function Dropdown({ dropdownFor = "ALL_WALLETS" }) {
   return (
       <Box sx={{ minWidth: +`${dropdownFor == "LABELS" || dropdownFor == "TOKENS" ? 80 : 110}`, ml: 1  , fontWeight: 600}}>
         <FormControl fullWidth size="small">
-          <InputLabel id="demo-simple-select-label" className="text-xs font-semibold font-sans flex items-center ">
+          <InputLabel id="demo-simple-select-label" className="font-semibold font-sans flex items-center " style={{fontSize: '12px' , fontFamily:"Inter"}}>
             {/* translate-x-3 translate-y-[7px] */}
             {dropdownType.type==="EXPORT" && <img src={"/icons/export-icon.svg" } alt="refresh" className="w-3 h-3 mr-2"/>}
             {dropdownType.name}

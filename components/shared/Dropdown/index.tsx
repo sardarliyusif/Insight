@@ -98,7 +98,7 @@ export default function Dropdown({ dropdownFor = "ALL_WALLETS" }) {
             id="demo-simple-select"
             value={type}
             label={dropdownType.name}
-            style={{ height: "30px" }} 
+            style={{ height: "34px" }} 
             inputProps={{MenuProps: {disableScrollLock: true}}}
             onChange={handleChange}
             

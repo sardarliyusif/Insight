@@ -7,16 +7,16 @@ import {
   SelectChartDate,
   SelectTimes,
 } from "../../../redux/features/insightSlice";
-import BudgetChart from "../../../Components/charts/BudgetChart";
-import DonutChart from "../../../Components/charts/DonutChart";
-import TokenFlow from "../../../Components/charts/TokenFlowChart";
-import Layout from "../../../Components/layout";
-import MyButton from "../../../Components/shared/Button";
-import LabelModal from "../../../Components/modals/LabelModal";
+import BudgetChart from "../../../components/charts/BudgetChart";
+import DonutChart from "../../../components/charts/DonutChart";
+import TokenFlow from "../../../components/charts/TokenFlowChart";
+import Layout from "../../../components/layout";
+import MyButton from "../../../components/shared/Button";
+import LabelModal from "../../../components/modals/LabelModal";
 import { forEach } from "lodash";
-import BlockChainModal from "../../../Components/modals/BlockChainModal";
-import Dropdown from "../../../Components/shared/Dropdown";
-import TotalTokens from "../../../Components/TotalTokens";
+import BlockChainModal from "../../../components/modals/BlockChainModal";
+import Dropdown from "../../../components/shared/Dropdown";
+import TotalTokens from "../../../components/TotalTokens";
 
 const Insight = () => {
   const [showLabelModal, setShowLabelModal] = useState(false);

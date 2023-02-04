@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "redux/features/insightSlice.ts", "Components/charts/DonutChart.tsx", "Components/charts/BudgetChart.tsx", "Components/modals/BlockChainModal.tsx", "pages/dashboard/insight/budgetedchart.tsx", "Components/layout.tsx", "Components/shared/Dropdown/index.tsx"  ],
+, "redux/features/insightSlice.ts", "components/charts/DonutChart.tsx", "components/charts/BudgetChart.tsx", "components/modals/BlockChainModal.tsx", "pages/dashboard/insight/budgetedchart.tsx", "components/layout.tsx", "components/shared/Dropdown/index.tsx"  ],
   "exclude": [
     "node_modules"
   ]

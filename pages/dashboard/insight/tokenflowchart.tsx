@@ -2,8 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import TokenFlow from "../../../Components/charts/TokenFlowChart";
-import Layout from "../../../Components/layout";
+import TokenFlow from "../../../components/charts/TokenFlowChart";
+import Layout from "../../../components/layout";
 import {
   changeChartDate,
   SelectChartDate,

@@ -2,8 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import BudgetChart from "../../../Components/charts/BudgetChart";
-import Layout from "../../../Components/layout";
+import BudgetChart from "../../../components/charts/BudgetChart";
+import Layout from "../../../components/layout";
 import {
   changeChartDate,
   SelectChartDate,

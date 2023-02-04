@@ -6,13 +6,15 @@ import {
   SelectTimes,
 } from "../../redux/features/insightSlice";
 
-export default function BlockChainModal({
-  setShowBlockChainModal,
-  showBlockChainModal,
-}) {
+export default function LabelModal({ setShowLabelModal, showLabelModal }) {
   const chartDate = useSelector(SelectChartDate);
   const times = useSelector(SelectTimes);
-  let donutData;
+  let donutData: {
+    firstExample: number;
+    secondExample: number;
+    thirdExample: number;
+    fourthExample: number;
+  };
   if (chartDate === "week") {
     donutData = times.forWeek.donutData;
   } else if (chartDate === "month") {
@@ -22,29 +24,32 @@ export default function BlockChainModal({
   } else {
     donutData = times.forYear.donutData;
   }
-  let totalDonutData = 0;
-  forEach(donutData, (x) => (totalDonutData += x));
+  let totalDonutData: number = 0;
+  forEach(
+    donutData,
+    (donutExapmleData: number) => (totalDonutData += donutExapmleData)
+  );
   return (
     <>
-      {showBlockChainModal ? (
+      {showLabelModal ? (
         <div className="w-full h-screen backdrop-blur-sm bg-white/30 fixed top-0 left-0 z-50">
           <div
             className="fixed bg-white w-[650px] min-h-[300px] border border-[#ddd] rounded-md pb-4 top-2/4 left-2/4 z-20 transform -translate-y-1/2 -translate-x-1/2"
             id="defaultModal"
           >
             <div className="flex justify-between py-5 px-7">
-              <p className="font-semibold text-xl">Blockchain</p>
+              <p className="font-semibold text-xl">Labels</p>
               <img
                 src="/icons/close.svg"
                 className="cursor-pointer"
-                onClick={() => setShowBlockChainModal(false)}
+                onClick={() => setShowLabelModal(false)}
               ></img>
             </div>
             <ul>
-              <li className="border-b flex items-center border-[#D6D6D6] px-9 py-7">
-                <img src="/icons/celo.svg" className="mr-3" />
+              <li className="border-b flex border-[#D6D6D6] px-9 py-7">
+                <span className="w-1 h-6 block bg-[#8085E9] mr-3"></span>
                 <div className="flex justify-between flex-1 font-medium text-base relative">
-                  <p>Celo</p>
+                  <p>Payroll</p>
                   <p className="absolute left-1/2">
                     $
                     {donutData.firstExample > 999999
@@ -59,10 +64,10 @@ export default function BlockChainModal({
                   </p>
                 </div>
               </li>
-              <li className="border-b flex items-center border-[#D6D6D6] px-9 py-7">
-                <img src="/icons/solana.svg" className="mr-3" />
+              <li className="border-b flex border-[#D6D6D6] px-9 py-7">
+                <span className="w-1 h-6 block bg-[#8085E9] mr-3"></span>
                 <div className="flex justify-between flex-1 font-medium text-base relative">
-                  <p>Solana</p>
+                  <p>Event</p>
                   <p className="absolute left-1/2">
                     $
                     {donutData.secondExample > 999999
@@ -77,10 +82,10 @@ export default function BlockChainModal({
                   </p>
                 </div>
               </li>
-              <li className="border-b flex items-center border-[#D6D6D6] px-9 py-7">
-                <img src="/icons/ethereum.svg" className="mr-3" />
+              <li className="border-b flex border-[#D6D6D6] px-9 py-7">
+                <span className="w-1 h-6 block bg-[#8085E9] mr-3"></span>
                 <div className="flex justify-between flex-1 font-medium text-base relative">
-                  <p>Ethereum</p>
+                  <p>Advertisement</p>
                   <p className="absolute left-1/2">
                     $
                     {donutData.thirdExample > 999999
@@ -95,10 +100,10 @@ export default function BlockChainModal({
                   </p>
                 </div>
               </li>
-              <li className="border-b flex items-center border-[#D6D6D6] px-9 py-7">
-                <img src="/icons/celo.svg" className="mr-3" />
+              <li className="border-b flex border-[#D6D6D6] px-9 py-7">
+                <span className="w-1 h-6 block bg-[#8085E9] mr-3"></span>
                 <div className="flex justify-between flex-1 font-medium text-base relative">
-                  <p>Avalanche</p>
+                  <p>Reimbursement</p>
                   <p className="absolute left-1/2">
                     $
                     {donutData.fourthExample > 999999

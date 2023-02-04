@@ -12,11 +12,11 @@ import DonutChart from "../../../components/charts/DonutChart";
 import TokenFlow from "../../../components/charts/TokenFlowChart";
 import Layout from "../../../components/layout";
 import MyButton from "../../../components/shared/Button";
-import TotalTokens from "../../../components/TotalTokens";
 import LabelModal from "../../../components/modals/LabelModal";
 import { forEach } from "lodash";
 import BlockChainModal from "../../../components/modals/BlockChainModal";
 import Dropdown from "../../../components/shared/Dropdown";
+import TotalTokens from "../../../components/TotalTokens";
 
 const Insight = () => {
   const [showLabelModal, setShowLabelModal] = useState(false);
@@ -31,7 +31,12 @@ const Insight = () => {
 
   const chartDate = useSelector(SelectChartDate);
   const times = useSelector(SelectTimes);
-  let donutData;
+  let donutData: {
+    firstExample: number;
+    secondExample: number;
+    thirdExample: number;
+    fourthExample: number;
+  };
   if (chartDate === "week") {
     donutData = times.forWeek.donutData;
   } else if (chartDate === "month") {
@@ -93,9 +98,9 @@ const Insight = () => {
             </span>
           </div>
           <Dropdown dropdownFor="TOKEN_PRICES" />
-          <Dropdown dropdownFor="ALL_NETWORKS"/>
+          <Dropdown dropdownFor="ALL_NETWORKS" />
           <Dropdown />
-          <MyButton type="export" />
+          <Dropdown dropdownFor="EXPORT"/>
           <MyButton />
         </div>
       </div>

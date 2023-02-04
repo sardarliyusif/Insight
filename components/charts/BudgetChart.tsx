@@ -1,28 +1,42 @@
 import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
-import { SelectChartDate, SelectTimes } from "../../redux/features/insightSlice";
-import dateFormat from 'dateformat';
+import {
+  SelectChartDate,
+  SelectTimes,
+} from "../../redux/features/insightSlice";
+import dateFormat from "dateformat";
+import { ApexOptions } from "apexcharts";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-export default function BudgetChart({ leftBar, height , align='center' }) {
-  const chartDate = useSelector(SelectChartDate)
-  const times = useSelector(SelectTimes)
+export default function BudgetChart({
+  leftBar,
+  height,
+  align = "center",
+}: {
+  leftBar?: boolean;
+  height?: number;
+  align?: "right" | "left" | "center";
+}) {
+  const chartDate = useSelector(SelectChartDate);
+  const times = useSelector(SelectTimes);
   let selectedTimes;
-  if(chartDate === 'week'){
-    selectedTimes = times.forWeek.budgetData
-  }else if (chartDate === 'month'){
-    selectedTimes = times.forMonth.budgetData
-  }else if (chartDate === 'quart'){
-    selectedTimes = times.forQuart.budgetData
-  }else{
-    selectedTimes = times.forYear.budgetData
+  if (chartDate === "week") {
+    selectedTimes = times.forWeek.budgetData;
+  } else if (chartDate === "month") {
+    selectedTimes = times.forMonth.budgetData;
+  } else if (chartDate === "quart") {
+    selectedTimes = times.forQuart.budgetData;
+  } else {
+    selectedTimes = times.forYear.budgetData;
   }
-  const actualData = selectedTimes.actual
-  const budgetedData = selectedTimes.budgeted
-  const keys = Object.keys(actualData).map(s => new Date(s).getTime())
-  const symbol = '$'
-  
-  const options = {
+  const actualData = selectedTimes.actual;
+  const budgetedData = selectedTimes.budgeted;
+  const keys: number[] = Object.keys(actualData).map((s) =>
+    new Date(s).getTime()
+  );
+  const symbol: string = "$";
+
+  const options: ApexOptions = {
     chart: {
       type: "line",
       height: 350,
@@ -34,7 +48,7 @@ export default function BudgetChart({ leftBar, height , align='center' }) {
     legend: {
       position: "top",
       fontWeight: 700,
-      horizontalAlign: `${align}`, 
+      horizontalAlign: `${align}`,
       labels: {
         colors: ["#333333"],
       },
@@ -47,7 +61,6 @@ export default function BudgetChart({ leftBar, height , align='center' }) {
       bar: {
         horizontal: false,
         columnWidth: "40%",
-        endingShape: "rounded",
       },
     },
     dataLabels: {
@@ -57,13 +70,13 @@ export default function BudgetChart({ leftBar, height , align='center' }) {
     stroke: {
       show: true,
       width: 2,
-      colors: 'smooth',
+      colors: ["smooth"],
     },
     grid: {
-      position:'back',
-      padding:{
+      position: "back",
+      padding: {
         right: 40,
-        left: 40
+        left: 40,
       },
       yaxis: {
         lines: {
@@ -77,16 +90,19 @@ export default function BudgetChart({ leftBar, height , align='center' }) {
       labels: {
         formatter: (val) => {
           if (chartDate === "week") {
-            return dateFormat(val, "ddd")
+            return dateFormat(val, "ddd");
           }
           if (chartDate === "year" || chartDate === "quart") {
-            return dateFormat(val, "mmm")
+            return dateFormat(val, "mmm");
           }
           return dateFormat(val, "dd mmm");
-        }
+        },
       },
       categories: [
-        ...Object.entries(budgetedData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+        ...Object.entries(budgetedData).map(([key, value]) => ({
+          x: new Date(key).getTime(),
+          y: value,
+        })),
       ],
       axisBorder: {
         color: "#CCD6EB",
@@ -104,33 +120,36 @@ export default function BudgetChart({ leftBar, height , align='center' }) {
       x: {
         format: "dd MMM yyyy",
         formatter: (value, { series, seriesIndex, dataPointIndex, w }) => {
-
           if (chartDate === "week") {
-            return dateFormat(value, "ddd")
+            return dateFormat(value, "ddd");
           }
           if (chartDate === "month" || chartDate === "quart") {
-            return dateFormat(value, "dd mmm")
+            return dateFormat(value, "dd mmm");
           }
           return dateFormat(value, "mmm");
-        }
-
+        },
       },
-      
     },
   };
-  const series = [
+  let series = [
     {
       name: "Budgeted",
       type: "column",
       data: [
-        ...Object.entries(budgetedData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+        ...Object.entries(budgetedData).map(([key, value]) => ({
+          x: new Date(key).getTime(),
+          y: value,
+        })),
       ],
     },
     {
       name: "Actual",
       type: "column",
       data: [
-        ...Object.entries(actualData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+        ...Object.entries(actualData).map(([key, value]) => ({
+          x: new Date(key).getTime(),
+          y: value,
+        })),
       ],
     },
   ];
@@ -140,7 +159,7 @@ export default function BudgetChart({ leftBar, height , align='center' }) {
       series={series}
       type="line"
       height={height}
-      width={'100%'}
+      width={"100%"}
     />
   );
 }

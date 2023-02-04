@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-import TestDrop from "../components/shared/Dropdown/test";
 
 export default function Home() {
   return (
@@ -22,7 +21,6 @@ export default function Home() {
         >
           ➡ To Insight ⬅
         </Link>
-        <TestDrop/>
       </div>
     </>
   );

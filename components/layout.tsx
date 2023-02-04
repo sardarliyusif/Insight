@@ -1,7 +1,9 @@
 import Link from "next/link";
 import React from "react";
 
-const Layout = ({ children }) => {
+
+
+const Layout  = ({ children } ) => {
   return (
     <>
       <header className="fake-navbar">

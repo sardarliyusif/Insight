@@ -5,7 +5,13 @@ import { SelectChartDate, SelectTimes } from '../../redux/features/insightSlice'
 const TotalTokens = () => {
   const chartDate = useSelector(SelectChartDate)
   const times = useSelector(SelectTimes)
-  let selectedTimes;
+  let selectedTimes:{
+    totalSpending: number,
+    totalTokenNetflow: number,
+    totalTokenInflow: number,
+    totalTokenOutflow: number,
+    totalNetworkFee: number,
+  };
   if(chartDate === 'week'){
     selectedTimes = times.forWeek.totals
   }else if (chartDate === 'month'){

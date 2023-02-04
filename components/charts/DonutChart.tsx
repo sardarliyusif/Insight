@@ -1,8 +1,12 @@
+import { ApexOptions } from "apexcharts";
 import { map } from "lodash";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { SelectChartDate, SelectTimes } from "../../redux/features/insightSlice";
+import {
+  SelectChartDate,
+  SelectTimes,
+} from "../../redux/features/insightSlice";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function DonutChart({ donutFor = "LABELS" }) {
@@ -18,37 +22,42 @@ export default function DonutChart({ donutFor = "LABELS" }) {
   } else {
     donutData = times.forYear.donutData;
   }
-  const donutTypes = [
+  const donutTypes: { type: string; labels: string[] }[] = [
     {
       type: "LABELS",
-      labels: ['Payroll', 'Event', 'Advertisements', 'Reimbursement']
+      labels: ["Payroll", "Event", "Advertisements", "Reimbursement"],
     },
     {
       type: "TOKEN",
-      labels: ['CELO', 'Polygon', 'Ethereum', 'Avalanche']
+      labels: ["CELO", "Polygon", "Ethereum", "Avalanche"],
     },
     {
       type: "BLOCKCHAIN",
-      labels: ['Payroll', 'Event', 'Advertisements', 'Reimbursement']
+      labels: ["Payroll", "Event", "Advertisements", "Reimbursement"],
     },
     {
       type: "WALLET",
-      labels: ['CELO', 'Polygon', 'Ethereum', 'Avalanche']
+      labels: ["CELO", "Polygon", "Ethereum", "Avalanche"],
     },
     {
       type: "BUDGET",
-      labels: ['Payroll', 'Event', 'Advertisements', 'Reimbursement']
+      labels: ["Payroll", "Event", "Advertisements", "Reimbursement"],
     },
   ];
   const [donutType, setDonutType] = useState(
     donutTypes.find((e) => e.type == donutFor)
   );
-  const series = [donutData.firstExample,donutData.secondExample,donutData.thirdExample,donutData.fourthExample];
-  const options = {
+  const series = [
+    donutData.firstExample,
+    donutData.secondExample,
+    donutData.thirdExample,
+    donutData.fourthExample,
+  ];
+  const options: ApexOptions = {
     chart: {
       type: "donut",
     },
-    labels: [...donutType.labels.map(x => x)],
+    labels: [...donutType.labels.map((x) => x)],
     legend: {
       position: "bottom",
       fontSize: "15px",

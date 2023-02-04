@@ -1,30 +1,46 @@
 import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
-import { SelectChartDate, SelectTimes } from "../../redux/features/insightSlice";
-import dateFormat from 'dateformat';
+import {
+  SelectChartDate,
+  SelectTimes,
+} from "../../redux/features/insightSlice";
+import dateFormat from "dateformat";
+import { ApexOptions } from "apexcharts";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-export default function TokenFlow({ leftBar , height , align ='center' }) {
-  const chartDate = useSelector(SelectChartDate)
-  const times = useSelector(SelectTimes)
-  let selectedTimes;
-  if(chartDate === 'week'){
-    selectedTimes = times.forWeek.tokenflowData
-  }else if (chartDate === 'month'){
-    selectedTimes = times.forMonth.tokenflowData
-  }else if (chartDate === 'quart'){
-    selectedTimes = times.forQuart.tokenflowData
-  }else{
-    selectedTimes = times.forYear.tokenflowData
+export default function TokenFlow({
+  leftBar,
+  height,
+  align = "center",
+}: {
+  leftBar?: boolean;
+  height?: number;
+  align?: "left" | "right" | "center";
+}) {
+  const chartDate = useSelector(SelectChartDate);
+  const times = useSelector(SelectTimes);
+  let selectedTimes: {
+    inflow: {};
+    outflow: {};
+    netflow: {};
+  };
+  if (chartDate === "week") {
+    selectedTimes = times.forWeek.tokenflowData;
+  } else if (chartDate === "month") {
+    selectedTimes = times.forMonth.tokenflowData;
+  } else if (chartDate === "quart") {
+    selectedTimes = times.forQuart.tokenflowData;
+  } else {
+    selectedTimes = times.forYear.tokenflowData;
   }
-  const inflowData = selectedTimes.inflow
-  const outflowData = selectedTimes.outflow
-  const netflowData = selectedTimes.netflow
+  const inflowData = selectedTimes.inflow;
+  const outflowData = selectedTimes.outflow;
+  const netflowData = selectedTimes.netflow;
 
-  const keys = Object.keys(inflowData).map(s => new Date(s).getTime())
-  const symbol = '$'
+  const keys = Object.keys(inflowData).map((s) => new Date(s).getTime());
+  const symbol = "$";
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: "line",
       height: 350,
@@ -33,7 +49,7 @@ export default function TokenFlow({ leftBar , height , align ='center' }) {
       },
     },
     annotations: {
-      position: 'front' ,
+      position: "front",
     },
     legend: {
       position: "top",
@@ -51,7 +67,6 @@ export default function TokenFlow({ leftBar , height , align ='center' }) {
       bar: {
         horizontal: false,
         columnWidth: "40%",
-        endingShape: "rounded",
       },
     },
     dataLabels: {
@@ -63,10 +78,10 @@ export default function TokenFlow({ leftBar , height , align ='center' }) {
       curve: "smooth",
     },
     grid: {
-      position:'back',
-      padding:{
+      position: "back",
+      padding: {
         right: 40,
-        left: 40
+        left: 40,
       },
       yaxis: {
         lines: {
@@ -86,16 +101,19 @@ export default function TokenFlow({ leftBar , height , align ='center' }) {
       labels: {
         formatter: (val) => {
           if (chartDate === "week") {
-            return dateFormat(val, "ddd")
+            return dateFormat(val, "ddd");
           }
           if (chartDate === "year" || chartDate === "quart") {
-            return dateFormat(val, "mmm")
+            return dateFormat(val, "mmm");
           }
           return dateFormat(val, "dd mmm");
-        }
+        },
       },
       categories: [
-        ...Object.entries(inflowData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+        ...Object.entries(inflowData).map(([key, value]) => ({
+          x: new Date(key).getTime(),
+          y: value,
+        })),
       ],
       axisBorder: {
         color: "#CCD6EB",
@@ -113,18 +131,15 @@ export default function TokenFlow({ leftBar , height , align ='center' }) {
       x: {
         format: "dd MMM yyyy",
         formatter: (value, { series, seriesIndex, dataPointIndex, w }) => {
-
           if (chartDate === "week") {
-            return dateFormat(value, "ddd")
+            return dateFormat(value, "ddd");
           }
           if (chartDate === "month" || chartDate === "quart") {
-            return dateFormat(value, "dd mmm")
+            return dateFormat(value, "dd mmm");
           }
           return dateFormat(value, "mmm");
-        }
-
+        },
       },
-      
     },
   };
   const series = [
@@ -132,21 +147,30 @@ export default function TokenFlow({ leftBar , height , align ='center' }) {
       name: "Inflow",
       type: "column",
       data: [
-        ...Object.entries(inflowData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+        ...Object.entries(inflowData).map(([key, value]) => ({
+          x: new Date(key).getTime(),
+          y: value,
+        })),
       ],
     },
     {
       name: "Outflow",
       type: "column",
       data: [
-        ...Object.entries(outflowData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+        ...Object.entries(outflowData).map(([key, value]) => ({
+          x: new Date(key).getTime(),
+          y: value,
+        })),
       ],
     },
     {
       name: "Netflow",
       type: "line",
       data: [
-        ...Object.entries(netflowData).map(([key, value]) => ({ x: new Date(key).getTime(), y: value }))
+        ...Object.entries(netflowData).map(([key, value]) => ({
+          x: new Date(key).getTime(),
+          y: value,
+        })),
       ],
     },
   ];
@@ -157,7 +181,7 @@ export default function TokenFlow({ leftBar , height , align ='center' }) {
       series={series}
       type="line"
       height={height}
-      width={'100%'}
+      width={"100%"}
     />
   );
 }
